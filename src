@@ -49,3 +49,114 @@ String cmd="";
 }
 
 }
+
+
+
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package assignemnt2dod;
+
+/**
+ *
+ * @author 20298994
+ */
+public class Player {
+
+    public Location l;
+
+    void goNorth (){
+      l = l.NorthExit ;
+
+   }
+
+    void goSouth (){
+      l = l.SouthExit ;
+    }
+
+    void goEast (){
+      l = l.EastExit ;
+
+    }
+
+    void goWest (){
+      l = l.WestExit ;
+    }
+
+}
+
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package assignemnt2dod;
+
+/**
+ *
+ * @author 20298994
+ */
+public class Location {
+
+public Location NorthExit;
+public Location SouthExit;
+public Location EastExit;
+public Location WestExit;
+
+}
+
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package assignemnt2dod;
+
+/**
+ *
+ * @author 20298994
+ */
+public class World {
+
+    Location towerRuins = new Location();
+    Location HighCliff = new Location();
+    Location LonelyBeach = new Location();
+    Location SunnyField = new Location();
+    Location Greatoak = new Location();
+    Location MurkyMarches = new Location();
+    Location BabblingBrook = new Location();
+    Location MistyMountain = new Location();
+    Location DragonsCave = new Location();
+
+ public World () {
+
+    BabblingBrook.NorthExit = SunnyField;
+    BabblingBrook.EastExit = MistyMountain;
+    MistyMountain.NorthExit = Greatoak;
+    MistyMountain.EastExit = DragonsCave;
+    SunnyField.NorthExit = towerRuins;
+    SunnyField.EastExit = Greatoak;
+    SunnyField.SouthExit = BabblingBrook;
+    Greatoak.NorthExit = HighCliff;
+    Greatoak.SouthExit = MistyMountain;
+    Greatoak.WestExit = SunnyField;
+    Greatoak.EastExit = MurkyMarches;
+    MurkyMarches.NorthExit = LonelyBeach;
+    MurkyMarches.EastExit = Greatoak;
+    towerRuins.SouthExit = SunnyField;
+    HighCliff.SouthExit = Greatoak;
+    HighCliff.EastExit = LonelyBeach;
+    LonelyBeach.SouthExit = MurkyMarches;
+    DragonsCave.WestExit = MistyMountain;
+ }
+
+
+
+
+
+}
+
+
+
