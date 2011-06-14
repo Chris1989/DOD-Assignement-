@@ -1,0 +1,51 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package assignemnt2dod;
+import java.io.*;
+
+
+/**
+ *
+ * @author 20298994
+ */
+public class Main {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // TODO code application logic here
+    
+BufferedReader r = new BufferedReader (new InputStreamReader (System.in) );
+Player p = new Player();
+//p.l = BabblingBrook;
+
+String cmd="";
+ while(true){
+     try{
+     cmd = r.readLine();
+
+     
+      }catch(Exception e){};
+
+    System.out.println(cmd);
+
+    if (cmd.equals("North"))
+        p.goNorth();
+
+     if (cmd.equals("South"))
+        p.goSouth();
+
+      if (cmd.equals("East"))
+        p.goEast();
+
+      if (cmd.equals("West"))
+        p.goWest();
+ }
+
+}
+
+}
