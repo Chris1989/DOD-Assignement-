@@ -1,0 +1,143 @@
+package dod;
+
+/**
+ *
+ * @author 20298994
+ */
+public class DoD {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        java.io.BufferedReader stdin = new java.io.BufferedReader(new java.io.InputStreamReader(System.in));
+
+        World world = new World();
+        Player player = new Player(world.locations.get(0));
+
+        String cmd="";
+        while(!cmd.equalsIgnoreCase("quit")){
+            System.out.println("You are "+player.location.desc);
+            System.out.println("What next?");
+            try{
+                cmd = stdin.readLine();
+            }catch(java.io.IOException e){
+                System.out.println(e);
+            }
+            if(cmd.equalsIgnoreCase("n")){
+                if(player.location.north!=null){
+                    player.location = player.location.north;
+                }else{
+                    System.out.println("There is no exit to the north.");
+                }
+            }
+            if(cmd.equalsIgnoreCase("e")){
+                if(player.location.east!=null){
+                    player.location = player.location.east;
+                }else{
+                    System.out.println("There is no exit to the east.");
+                }
+            }
+            if(cmd.equalsIgnoreCase("s")){
+                if(player.location.south!=null){
+                    player.location = player.location.south;
+                }else{
+                    System.out.println("There is no exit to the south.");
+                }
+            }
+            if(cmd.equalsIgnoreCase("w")){
+                if(player.location.west!=null){
+                    player.location = player.location.west;
+                }else{
+                    System.out.println("There is no exit to the west.");
+                }
+            }
+            if(cmd.equalsIgnoreCase("quit")){
+                System.out.println("You quit.");
+            }
+        }
+        System.out.println("Goodbye!");
+        
+    }
+}
+
+
+package dod;
+
+/**
+ *
+ * @author 20298994
+ */
+public class Location {
+    
+    String desc;
+    Location north, east, south, west;
+    
+    Location(String d){
+        desc = d;
+    }
+        
+    void setExits(Location n, Location e, Location s, Location w){
+        north = n;
+        east = e;
+        south = s;
+        west = w;
+    }
+}
+
+
+package dod;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
+/**
+ *
+ * @author 20298994
+ */
+public class World {
+    
+    ArrayList<Location> locations;
+    
+    World(){
+        Location bb = new Location("by a babbling brook");
+        Location mm = new Location("up in some misty mountains");
+        Location dc = new Location("in the cave of Gwent the dragon");
+        Location sf = new Location("in a sunny field");
+        Location go = new Location("by a great oak");
+        Location ms = new Location("in some murky marshes");
+        Location tr = new Location("in some deserted tower ruins");
+        Location hc = new Location("on top of some high cliffs");
+        Location lb = new Location("on a lonely beach");
+        
+        bb.setExits(sf,mm,null,null);
+        mm.setExits(go,dc,null,bb);
+        dc.setExits(null,null,null,mm);
+        sf.setExits(tr,go,bb,null);
+        go.setExits(hc,ms,mm,sf);
+        ms.setExits(lb,null,null,go);
+        tr.setExits(null,null,sf,null);
+        hc.setExits(null,lb,go,null);
+        lb.setExits(null,null,ms,hc);
+        
+        Location[] ls = new Location[] {bb,mm,dc,sf,go,ms,tr,hc,lb};
+        locations = new ArrayList(Arrays.asList(ls));
+    }
+}
+
+
+package dod;
+
+/**
+ *
+ * @author 20298994
+ */
+public class Player {
+    
+    Location location;
+    
+    Player(Location start){
+        location = start;
+    }
+    
+}
